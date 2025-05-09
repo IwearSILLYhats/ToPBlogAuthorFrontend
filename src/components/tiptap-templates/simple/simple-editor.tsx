@@ -1,5 +1,10 @@
 import * as React from "react";
-import { EditorContent, EditorContext, useEditor } from "@tiptap/react";
+import {
+  EditorContent,
+  EditorContext,
+  JSONContent,
+  useEditor,
+} from "@tiptap/react";
 
 // --- Tiptap Core Extensions ---
 import { StarterKit } from "@tiptap/starter-kit";
@@ -172,7 +177,13 @@ const MobileToolbarContent = ({
   </>
 );
 
-export function SimpleEditor() {
+export function SimpleEditor({
+  content,
+  editorData,
+}: {
+  content: string;
+  editorData: JSONContent;
+}) {
   const isMobile = useMobile();
   const windowSize = useWindowSize();
   const [mobileView, setMobileView] = React.useState<
@@ -234,12 +245,13 @@ export function SimpleEditor() {
         maxSize: MAX_FILE_SIZE,
         limit: 3,
         upload: handleImageUpload,
-        onError: (error) => console.error("Upload failed:", error),
+        onError: (error: Error) => console.error("Upload failed:", error),
       }),
       TrailingNode,
       Link.configure({ openOnClick: false }),
     ],
-    content: null,
+    content: content || null,
+    onUpdate: ({ editor }) => (editorData = editor.getJSON()),
   });
 
   React.useEffect(() => {
