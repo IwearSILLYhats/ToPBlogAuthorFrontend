@@ -1,14 +1,23 @@
 import "./Header.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import useLocal from "../hooks/useLocal";
 import Profile from "./Profile";
+import { apiPost } from "../util/postForm";
 
 function Header() {
+  const navigate = useNavigate();
   const [token, setToken] = useLocal("jwtToken", null);
-  const [user, setUser] = useLocal("username", null);
+  const [user, setUser] = useLocal("user", null);
   function logout() {
     setToken(null);
     setUser(null);
+  }
+  async function newPost() {
+    const post = await apiPost(`/posts`);
+    console.log(post);
+    if (post.ok) {
+      navigate(`/posts/${post.id}`);
+    }
   }
 
   return (
@@ -20,7 +29,10 @@ function Header() {
           <NavLink to="/login">Login</NavLink>
         </div>
       ) : (
-        <Profile user={user} logout={logout} />
+        <div>
+          <button onClick={newPost}>+ New Post</button>
+          <Profile user={user} logout={logout} />
+        </div>
       )}
     </nav>
   );

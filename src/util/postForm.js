@@ -1,26 +1,38 @@
 const API_URL = import.meta.env.VITE_API_URL;
-const token = localStorage.getItem("jwtToken");
 
 async function apiFetch(endpoint, method, data) {
-  return await fetch(`${API_URL}${endpoint}`, {
-    method: method,
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: token,
-    },
-    body: JSON.stringify(data),
-  });
+  try {
+    const token = localStorage.getItem("jwtToken");
+    let opts = {
+      method: method,
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${JSON.parse(token)}`,
+      },
+    };
+    if (data) opts.body = JSON.stringify(data);
+
+    const response = await fetch(`${API_URL}${endpoint}`, opts);
+    if (!response.ok) {
+      console.log(response);
+      throw new Error(`Request error: ${response.status}`);
+    }
+    let responseData = await response.json();
+    return responseData;
+  } catch (error) {
+    return error;
+  }
 }
 
-async function apiPost(endpoint, data) {
+function apiPost(endpoint, data) {
   return apiFetch(endpoint, "POST", data);
 }
 
-async function apiPut(endpoint, data) {
+function apiPut(endpoint, data) {
   return apiFetch(endpoint, "PUT", data);
 }
 
-async function apiDelete(endpoint, data) {
+function apiDelete(endpoint, data) {
   return apiFetch(endpoint, "DELETE", data);
 }
 

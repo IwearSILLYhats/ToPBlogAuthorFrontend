@@ -9,9 +9,10 @@ function Profile({ user, logout }) {
   return (
     <div className="profileCard">
       <button className="profileBtn" onClick={showToggle}>
-        {user[0].toUpperCase()}
+        {user.username[0].toUpperCase()}
       </button>
       <div className="profile">
+        <p>{user.username}</p>
         <p>Email</p>
         <p>Author Site</p>
         <hr />
