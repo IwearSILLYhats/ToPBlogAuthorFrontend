@@ -8,7 +8,7 @@ function ArticleList({ data, draft }) {
       {data &&
         filteredData.length > 0 &&
         filteredData.map((post) => {
-          return <Card cardInfo={post} />;
+          return <Card cardInfo={post} key={post.id} />;
         })}
     </main>
   );

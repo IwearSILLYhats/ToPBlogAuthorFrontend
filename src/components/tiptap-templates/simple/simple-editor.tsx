@@ -221,9 +221,9 @@ export function SimpleEditor({
     immediatelyRender: false,
     editorProps: {
       attributes: {
-        autocomplete: "off",
-        autocorrect: "off",
-        autocapitalize: "off",
+        "autocomplete": "off",
+        "autocorrect": "off",
+        "autocapitalize": "off",
         "aria-label": "Main content area, start typing to enter text.",
       },
     },
@@ -251,7 +251,9 @@ export function SimpleEditor({
       Link.configure({ openOnClick: false }),
     ],
     content: content || null,
-    onUpdate: ({ editor }) => (editorData = editor.getJSON()),
+    onUpdate: ({ editor }) => {
+      editorData.current = editor.getJSON();
+    },
   });
 
   React.useEffect(() => {
