@@ -15,7 +15,7 @@ function Header() {
   async function newPost() {
     const post = await apiPost(`/posts`);
     console.log(post);
-    if (post.ok) {
+    if (post.success) {
       navigate(`/posts/${post.id}`);
     }
   }

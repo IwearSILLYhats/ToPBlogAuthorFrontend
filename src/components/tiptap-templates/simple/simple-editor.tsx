@@ -135,12 +135,6 @@ const MainToolbarContent = ({
         <TextAlignButton align="justify" />
       </ToolbarGroup>
 
-      <ToolbarSeparator />
-
-      <ToolbarGroup>
-        <ImageUploadButton text="Add" />
-      </ToolbarGroup>
-
       <Spacer />
 
       {isMobile && <ToolbarSeparator />}
@@ -182,7 +176,7 @@ export function SimpleEditor({
   editorData,
 }: {
   content: string;
-  editorData: JSONContent;
+  editorData: React.MutableRefObject<JSONContent>;
 }) {
   const isMobile = useMobile();
   const windowSize = useWindowSize();

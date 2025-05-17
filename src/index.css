@@ -73,4 +73,5 @@ button:focus-visible {
 .card {
   border: white solid 1px;
   width: fit-content;
+  max-width: 20rem;
 }
