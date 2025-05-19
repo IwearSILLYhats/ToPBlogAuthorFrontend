@@ -21,7 +21,6 @@ import { Underline } from "@tiptap/extension-underline";
 // --- Custom Extensions ---
 import { Link } from "@/components/tiptap-extension/link-extension";
 import { Selection } from "@/components/tiptap-extension/selection-extension";
-import { TrailingNode } from "@/components/tiptap-extension/trailing-node-extension";
 
 // --- UI Primitives ---
 import { Button } from "@/components/tiptap-ui-primitive/button";
@@ -41,7 +40,6 @@ import "@/components/tiptap-node/paragraph-node/paragraph-node.scss";
 
 // --- Tiptap UI ---
 import { HeadingDropdownMenu } from "@/components/tiptap-ui/heading-dropdown-menu";
-import { ImageUploadButton } from "@/components/tiptap-ui/image-upload-button";
 import { ListDropdownMenu } from "@/components/tiptap-ui/list-dropdown-menu";
 import { NodeButton } from "@/components/tiptap-ui/node-button";
 import {
@@ -241,7 +239,6 @@ export function SimpleEditor({
         upload: handleImageUpload,
         onError: (error: Error) => console.error("Upload failed:", error),
       }),
-      TrailingNode,
       Link.configure({ openOnClick: false }),
     ],
     content: content || null,
