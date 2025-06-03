@@ -1,11 +1,11 @@
 import { useState } from "react";
 import useFetch from "../hooks/useFetch";
 import ArticleList from "./ArticleList";
-
+import { useOutletContext } from "react-router-dom";
 function ArticleManager() {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const userData = useOutletContext();
   const [view, setView] = useState(true);
-  const { data, loading, error } = useFetch(`/users/${user?.id}/posts`);
+  const { data, loading, error } = useFetch(`/users/${userData.id}/posts`);
 
   return (
     <main>

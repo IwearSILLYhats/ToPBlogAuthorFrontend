@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <Header userData={{ user, setUser }} />
-      {user && <Outlet />}
+      {user && <Outlet context={user} />}
       {!user && <h1>Login to access your articles</h1>}
     </>
   );
