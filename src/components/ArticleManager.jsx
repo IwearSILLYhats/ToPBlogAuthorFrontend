@@ -5,7 +5,7 @@ import ArticleList from "./ArticleList";
 function ArticleManager() {
   const user = JSON.parse(localStorage.getItem("user"));
   const [view, setView] = useState(true);
-  const { data, loading, error } = useFetch(`/users/${user.id}/posts`);
+  const { data, loading, error } = useFetch(`/users/${user?.id}/posts`);
 
   return (
     <main>

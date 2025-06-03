@@ -4,10 +4,10 @@ import useLocal from "../hooks/useLocal";
 import Profile from "./Profile";
 import { apiPost } from "../util/postForm";
 
-function Header() {
+function Header({ userData }) {
   const navigate = useNavigate();
   const [token, setToken] = useLocal("jwtToken", null);
-  const [user, setUser] = useLocal("user", null);
+  const { user, setUser } = userData;
   function logout() {
     setToken(null);
     setUser(null);
