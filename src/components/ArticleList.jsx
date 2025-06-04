@@ -1,7 +1,7 @@
 import Card from "./Card";
 
-function ArticleList({ data, draft }) {
-  const filteredData = data.filter((post) => post.published === draft);
+function ArticleList({ data, published }) {
+  const filteredData = data.filter((post) => post.published === published);
   return (
     <main>
       <h1>Content goes here</h1>

@@ -6,7 +6,7 @@ import { apiPost } from "../util/postForm";
 
 function Header({ userData }) {
   const navigate = useNavigate();
-  const [token, setToken] = useLocal("jwtToken", null);
+  const [, setToken] = useLocal("jwtToken", null);
   const { user, setUser } = userData;
   function logout() {
     setToken(null);
@@ -14,7 +14,6 @@ function Header({ userData }) {
   }
   async function newPost() {
     const post = await apiPost(`/posts`);
-    console.log(post);
     if (post.success) {
       navigate(`/posts/${post.id}`);
     }

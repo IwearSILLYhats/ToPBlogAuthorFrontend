@@ -16,8 +16,8 @@ function ArticleManager() {
       <div className="content">
         {loading && <p className="loading">Loading...</p>}
         {error && <p className="error">{error}</p>}
-        {data && view && <ArticleList data={data} draft={true} />}
-        {data && !view && <ArticleList data={data} draft={false} />}
+        {data && view && <ArticleList data={data} published={true} />}
+        {data && !view && <ArticleList data={data} published={false} />}
       </div>
     </main>
   );
